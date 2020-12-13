@@ -21,3 +21,8 @@ example:
 \>\>\> x.PAIR  
 [(12, 'a'), (13, 'b'), ('c', 14), ('d', 15), (16, 'e')]  
 
+#### index(value)
+Returns a list of indexes of pairs containing a given value.  
+example:  
+>
+
