@@ -40,6 +40,27 @@ example:
 \>\>\> x.readAll(13)
 [(13, 'b')]
 
+#### remove(value)
+Removes all pairs which contain a given value.  
+example:
+> \>\>\> x.PAIR  
+[(12, 'a'), (13, 'b'), ('c', 14), ('d', 15), (16, 'e')]  
+\>\>\> x.remove(12)  
+\>\>\> x.PAIR  
+[(13, 'b'), ('c', 14), ('d', 15), (16, 'e')]  
+
+#### pop(value); popAll(value)
+Pop returns a list of corresponding values to the given ones and removes them; popAll returns the entire pairs which
+contain the given value and removes them.  
+> \>\>\> x.PAIR  
+[(13, 'b'), ('c', 14), ('d', 15), (16, 'e')]  
+\>\>\> x.pop(13)  
+['b']  
+\>\>\> x.popAll(14)  
+[('c', 14)]  
+\>\>\> x.PAIR  
+[('d', 15), (16, 'e')]  
+
 #### rleft(); rright()
 Return a list of all left/right values.  
 example:  
@@ -84,6 +105,7 @@ example:
 > \>\>\> x.PAIR  
 [(12, 'a'), (13, 'b'), (14, 'c'), (15, 'd'), ('e', 16)]  
 \>\>\> x.isSameType('left')  
+False  
 \>\>\> x.swapTypes(int, 'left')  
 \>\>\> x.isSameType('left')  
 True  
@@ -104,3 +126,48 @@ example:
 \>\>\> x.sort('left', True)  
 \>\>\> x.PAIR  
 [(0, 'a'), (0, 'e'), (2, 'b'), (2, 'c'), (8, 'a'), (8, 'b')]  
+
+#### repair()
+If self.PAIR does not comply with 'Pair' definition returns a repaired version of self.PAIR. Else returns False.  
+example:  
+> \>\>\> x.PAIR  
+(('d', 15), (16, 'e'), [12, 3], [4])  
+\>\>\> x.repair()  
+[('d', 15), (16, 'e'), (12, 3)]  
+\>\>\> x.PAIR = x.repair()
+
+#### toDict(side)
+Turns Pair into Dict. Choose side to specify which side should become key.  
+example:  
+> \>\>\> x.PAIR  
+[('d', 15), (16, 'e'), (12, 3)]  
+\>\>\> x.toDict('left')  
+{'d': 15, 16: 'e', 12: 3}  
+\>\>\> x.toDict('right')  
+{15: 'd', 'e': 16, 3: 12}  
+
+#### toList()
+Turns Pair into List.  
+example:  
+> \>\>\> x.PAIR  
+[('d', 15), (16, 'e'), (12, 3)]  
+\>\>\> x.toList()  
+[['d', 15], [16, 'e'], [12, 3]]  
+
+
+## neoninstance(object, type)
+Equivallent to 'isintsance' but works for objects present in this module. (for now it only works with 'Pair')
+Returns True if the given object is of the given type.  
+example:  
+> \>\>\> neoninstance(x.PAIR, 'Pair')  
+True  
+\>\>\> neoninstance([12, 4], 'Pair')  
+False  
+
+## isiterable(object)
+Returns True if object is iterable.  
+example:  
+> \>\>\> isiterable(12)  
+False  
+\>\>\> isiterable([12])  
+True  
